@@ -25,7 +25,7 @@ const server = http.createServer((req : IncomingMessage, res: ServerResponse) =>
         res.statusCode = 200;
         res.end(JSON.stringify(rows));
       });
-    } else if (req.url === '/api/dua') {
+    } else if (req.url === '/api/duas') {
       db.all('SELECT * FROM dua', [], (err:any, rows : any) => {
         if (err) {
           res.statusCode = 500;
