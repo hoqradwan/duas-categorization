@@ -26,13 +26,12 @@ export default function Home({ categories }: HomeProps) {
         </div>
 
         <div className="">
-          <TopNav />
-          <div className="flex justify-between items-center mx-4 my-4 bg-[#fafffa]">
+         
+        </div>
+        <div className="flex justify-between items-center mx-4 my-4 bg-[#fafffa]">
           <DuaApp />
-          <RightNav/>
 
           </div>
-        </div>
       </div>
     </>
 

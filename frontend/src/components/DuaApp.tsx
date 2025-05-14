@@ -2,6 +2,9 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import TopNav from './TopNav';
+import RightNav from './RightNav';
+import HomeNav from './HomeNav';
 
 // Define the data types for category, subcategory, and dua
 interface Category {
@@ -22,10 +25,10 @@ interface Dua {
   dua_id: number;
   dua_name_en: string;
   translation_en: string;
-  dua_arabic : string;
-  clean_arabic : string;
+  dua_arabic: string;
+  clean_arabic: string;
   transliteration_en: string;
-  refference_en : string;
+  refference_en: string;
 }
 
 const DuaApp = () => {
@@ -62,70 +65,86 @@ const DuaApp = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row">
-      {/* Sidebar for Categories and Subcategories */}
-      <div className="md:w-1/4 w-full p-4 border-r">
-        <h3 className="font-semibold text-lg">Categories</h3>
-        <ul>
-          {categories.map((category) => (
-            <li key={category.cat_id} className="my-2">
-             {/* <span>{typeof category.cat_icon}</span> */}
-             {/* <Image src={category.cat_icon} alt={category.cat_name_en} width={20} height={20} /> */}
-              <button
-                className="text-left w-full p-2 bg-gray-200 hover:bg-gray-300 rounded"
-                onClick={() => handleCategorySelect(category.cat_id)}
-              >
-                {category.cat_name_en}
-              </button>
-              {selectedCategory?.cat_id === category.cat_id && (
-                <div className="pl-4 mt-2">
-                  {/* Subcategories Dropdown */}
-                  {subcategories.map((sub) => (
-                    <div key={sub.subcat_id} className="my-1">
-                      <button
-                        className="text-left w-full p-2 bg-gray-100 hover:bg-gray-200 rounded"
-                        onClick={() => handleSubcategorySelect(sub.subcat_id)}
-                      >
-                        {sub.subcat_name_en}
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div >
+              <TopNav />
+              <HomeNav/>
 
-      {/* Right Content Area for Duas */}
-      <div className="md:w-3/4 w-full p-4">
-        {selectedCategory && (
-          <div>
-            <h3 className="font-semibold text-xl">{selectedCategory.cat_name_en}</h3>
-            {duas.length > 0 ? (
+      <div className='flex justify-between items-center mx-4 my-4 bg-[#fafffa]'>
+
+        <div className="flex flex-col md:flex-row">
+          {/* Sidebar for Categories and Subcategories */}
+          <div className="md:w-1/4 w-full p-4 border-r">
+            <h3 className="font-semibold text-lg">Categories</h3>
+            <ul>
+              {categories.map((category) => (
+                <li key={category.cat_id} className="my-2">
+                  {/* <span>{typeof category.cat_icon}</span> */}
+                  {/* <Image src={category.cat_icon} alt={category.cat_name_en} width={20} height={20} /> */}
+                  <button
+                    className="text-left w-full p-2 bg-gray-200 hover:bg-gray-300 rounded"
+                    onClick={() => handleCategorySelect(category.cat_id)}
+                  >
+                    {category.cat_name_en}
+                  </button>
+                  {selectedCategory?.cat_id === category.cat_id && (
+                    <div className="pl-4 mt-2">
+                      {/* Subcategories Dropdown */}
+                      {subcategories.map((sub) => (
+                        <div key={sub.subcat_id} className="my-1">
+                          <button
+                            className="text-left w-full p-2 bg-gray-100 hover:bg-gray-200 rounded"
+                            onClick={() => handleSubcategorySelect(sub.subcat_id)}
+                          >
+                            {sub.subcat_name_en}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Right Content Area for Duas */}
+          <div className="md:w-3/4 w-full p-4">
+            {selectedCategory && (
               <div>
-                <h4 className="font-semibold text-lg mt-4">Duas</h4>
-                <ul>
-                  {duas.map((dua) => (
-                    <li key={dua.dua_id} className="mt-4">
-                      <div className="bg-gray-50 p-4 rounded-md shadow-md">
-                        <p className="font-semibold">{dua.dua_arabic}</p>
-                        <p className="font-semibold">{dua.transliteration_en}</p>
-                        <p className="font-semibold">{dua.dua_name_en}</p>
-                        <p className="mt-2">{dua.translation_en}</p>
-                        <p className="mt-2">{dua.refference_en}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="font-semibold text-xl">{selectedCategory.cat_name_en}</h3>
+                {duas.length > 0 ? (
+                  <div>
+                    <h4 className="font-semibold text-lg mt-4">Duas</h4>
+                    <ul>
+                      {duas.map((dua) => (
+                        <li key={dua.dua_id} className="mt-4">
+                          <div className="bg-gray-50 p-4 rounded-md shadow-md">
+                            <p className="font-semibold">{dua.dua_arabic}</p>
+                            <p className="font-semibold">{dua.transliteration_en}</p>
+                            <p className="font-semibold">{dua.dua_name_en}</p>
+                            <p className="mt-2">{dua.translation_en}</p>
+                            <p className="mt-2">{dua.refference_en}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <p className="mt-4">Select a subcategory to view duas.</p>
+                )}
               </div>
-            ) : (
-              <p className="mt-4">Select a subcategory to view duas.</p>
             )}
           </div>
-        )}
+        </div>
+        <div>
+      <RightNav/>
+
       </div>
+      </div>
+
+    
     </div>
+
+
   );
 };
 
