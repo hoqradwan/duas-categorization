@@ -1,4 +1,7 @@
 import DuaApp from "@/components/DuaApp";
+import RightNav from "@/components/RightNav";
+import SideNav from "@/components/SideNav";
+import TopNav from "@/components/TopNav";
 
 interface Category {
   cat_id: number;
@@ -16,9 +19,23 @@ interface HomeProps {
 
 export default function Home({ categories }: HomeProps) {
   return (
-    <div>
-      <h1>I am red. lal e lal shahjalal</h1>
-      <DuaApp />
-    </div>
+    <>
+      <div className="flex">
+        <div className="" >
+          <SideNav />
+        </div>
+
+        <div className="">
+          <TopNav />
+          <div className="flex justify-between items-center mx-4 my-4 bg-[#fafffa]">
+          <DuaApp />
+          <RightNav/>
+
+          </div>
+        </div>
+      </div>
+    </>
+
+
   );
 }

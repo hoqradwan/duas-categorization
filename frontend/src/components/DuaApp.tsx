@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 // Define the data types for category, subcategory, and dua
@@ -21,6 +22,10 @@ interface Dua {
   dua_id: number;
   dua_name_en: string;
   translation_en: string;
+  dua_arabic : string;
+  clean_arabic : string;
+  transliteration_en: string;
+  refference_en : string;
 }
 
 const DuaApp = () => {
@@ -64,6 +69,8 @@ const DuaApp = () => {
         <ul>
           {categories.map((category) => (
             <li key={category.cat_id} className="my-2">
+             {/* <span>{typeof category.cat_icon}</span> */}
+             {/* <Image src={category.cat_icon} alt={category.cat_name_en} width={20} height={20} /> */}
               <button
                 className="text-left w-full p-2 bg-gray-200 hover:bg-gray-300 rounded"
                 onClick={() => handleCategorySelect(category.cat_id)}
@@ -102,8 +109,11 @@ const DuaApp = () => {
                   {duas.map((dua) => (
                     <li key={dua.dua_id} className="mt-4">
                       <div className="bg-gray-50 p-4 rounded-md shadow-md">
+                        <p className="font-semibold">{dua.dua_arabic}</p>
+                        <p className="font-semibold">{dua.transliteration_en}</p>
                         <p className="font-semibold">{dua.dua_name_en}</p>
                         <p className="mt-2">{dua.translation_en}</p>
+                        <p className="mt-2">{dua.refference_en}</p>
                       </div>
                     </li>
                   ))}
