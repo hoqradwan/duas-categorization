@@ -21,21 +21,7 @@ const server = http.createServer((req: IncomingMessage, res: ServerResponse) => 
         res.end(JSON.stringify(rows));
       });
     } 
-    
-    else if (req.url?.startsWith('/api/categories?name=')) {
-      const searchTerm = req.url.split('=')[1]; 
-
-      const query = 'SELECT * FROM category WHERE name LIKE ?';
-      db.all(query, [`%${searchTerm}%`], (err: any, rows: any) => {
-        if (err) {
-          res.statusCode = 500;
-          res.end(JSON.stringify({ error: err.message }));
-          return;
-        }
-        res.statusCode = 200;
-        res.end(JSON.stringify(rows)); 
-      });
-    }
+  
 
     else if (req.url === '/api/sub-categories') {
       db.all('SELECT * FROM sub_category', [], (err: any, rows: any) => {

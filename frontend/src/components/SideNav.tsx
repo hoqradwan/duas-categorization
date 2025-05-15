@@ -1,5 +1,4 @@
 import Image from "next/image";
-import logo from "../../public/assets/sidenav/logo.png";
 import duaCat from "../../public/assets/sidenav/dua cat.png";
 import categoryTwo from "../../public/assets/sidenav/category-2.png";
 import lampChange from "../../public/assets/sidenav/lamp-charge.png";

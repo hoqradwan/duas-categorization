@@ -4,7 +4,7 @@ import arrowRight from "../../public/assets/homeNav/arrow-right.png";
 
 const HomeNav = () => {
     return (
-        <div className="flex items-center bg-[#e8f0e8] py-2 px-4 text-sm">
+        <div className="flex items-center bg-[#e1ebe1] py-2 px-4 text-sm">
             <div className="flex items-center gap-1">
                 <Image
                     src={home}

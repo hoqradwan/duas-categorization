@@ -8,7 +8,7 @@ import HomeNav from './HomeNav';
 import Image from 'next/image';
 import duastar from '../../public/assets/dua/duastar.png';
 import duaFrame from '../../public/assets/dua/duaFrame.png';
-// Define the data types for category, subcategory, and dua
+
 interface Category {
   cat_id: number;
   cat_name_en: string;
@@ -38,28 +38,52 @@ const DuaMain = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [filteredCategories, setFilteredCategories] = useState<Category[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedSubcategory, setSelectedSubcategory] = useState<number | null>(null);
 
   const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
   const [duas, setDuas] = useState<Dua[]>([]);
   const [selectedDua, setSelectedDua] = useState<number | null>(null);
 
+  
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const res = await fetch('http://localhost:2000/api/categories');
         const categoriesData = await res.json();
         setCategories(categoriesData);
-        setFilteredCategories(categoriesData); 
+        setFilteredCategories(categoriesData);
+
+        if (categoriesData.length > 0) {
+          // Automatically select first category
+          const firstCategory = categoriesData[0];
+          setSelectedCategory(firstCategory);
+
+          // Fetch subcategories for first category
+          const subcatRes = await fetch(`http://localhost:2000/api/sub-categories/${firstCategory.cat_id}`);
+          const subcategoriesData = await subcatRes.json();
+          setSubcategories(subcategoriesData);
+
+          if (subcategoriesData.length > 0) {
+            const firstSubcategory = subcategoriesData[0];
+
+            const duasRes = await fetch(`http://localhost:2000/api/duas/${firstSubcategory.subcat_id}`);
+            const duasData = await duasRes.json();
+            setDuas(duasData);
+
+          } else {
+            setDuas([]);
+          }
+        }
       } catch (error) {
-        console.error("Failed to fetch categories:", error);
+        console.error("Failed to fetch categories or subcategories or duas:", error);
       }
     };
     fetchCategories();
   }, []);
 
-function generateRandomNumber() {
-  return Math.floor(100000 + Math.random() * 900000);
-}
+  function generateRandomNumber() {
+    return Math.floor(100000 + Math.random() * 900000);
+  }
 
 
   const handleCategorySelect = async (cat_id: number) => {
@@ -71,12 +95,13 @@ function generateRandomNumber() {
       const res = await fetch(`http://localhost:2000/api/sub-categories/${cat_id}`);
       const subcategoriesData = await res.json();
       setSubcategories(subcategoriesData);
-      setDuas([]); 
+      setDuas([]);
       setSelectedDua(null);
     } catch (error) {
       console.error("Failed to fetch subcategories:", error);
     }
   };
+
 
   const handleSubcategorySelect = async (subcat_id: number) => {
     try {
@@ -84,13 +109,21 @@ function generateRandomNumber() {
       const duasData = await res.json();
       setDuas(duasData);
       setSelectedDua(null);
+      setSelectedSubcategory(subcat_id);  
     } catch (error) {
       console.error("Failed to fetch duas:", error);
     }
   };
 
+
   const handleDuaSelect = (duaId: number) => {
     setSelectedDua(duaId);
+    setTimeout(() => {
+      const element = document.getElementById(`dua-${duaId}`);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   const handleSearchChange = (e: any) => {
@@ -103,14 +136,16 @@ function generateRandomNumber() {
       );
       setFilteredCategories(filtered);
     } else {
-      setFilteredCategories(categories); // Show all categories if search is cleared
+      setFilteredCategories(categories); 
     }
   };
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* Top Navbar */}
       <TopNav />
       <div className="flex flex-1">
+        {/* Left Sidebar */}
         <div className="w-16 bg-[#edf6ea] flex-shrink-0">
           <SideNav />
         </div>
@@ -157,18 +192,38 @@ function generateRandomNumber() {
                     </button>
 
                     {selectedCategory?.cat_id === category.cat_id && (
+              
                       <div className="ml-8 mt-2 space-y-1">
                         {subcategories.map((subcategory) => (
-                          <button
-                            key={generateRandomNumber()}
-                            className="w-full text-left p-2 text-sm hover:bg-gray-100 rounded"
-                            onClick={() => handleSubcategorySelect(subcategory.subcat_id)}
-                          >
-                            {subcategory.subcat_name_en}
-                            <span className="text-xs text-gray-500 ml-1">({subcategory.no_of_dua})</span>
-                          </button>
+                          <div key={generateRandomNumber()}>
+                            <button
+                              className="w-full text-left p-2 text-sm hover:bg-gray-100 rounded"
+                              onClick={() => handleSubcategorySelect(subcategory.subcat_id)}
+                            >
+                              {subcategory.subcat_name_en}
+                              <span className="text-xs text-gray-500 ml-1">({subcategory.no_of_dua})</span>
+                            </button>
+
+                            {/* Show duas under selected subcategory */}
+                            {selectedSubcategory === subcategory.subcat_id && duas.length > 0 && (
+                              <div className="ml-6 mt-1 space-y-1 max-h-40 overflow-y-auto">
+                                {duas.map((dua) => (
+                    
+                                  <p
+                                    key={generateRandomNumber()}
+                                    className="text-xs cursor-pointer px-2 py-1 rounded "
+
+                                    onClick={() => handleDuaSelect(dua.dua_id)}
+                                  >
+                                    {dua.dua_name_en}
+                                  </p>
+                                ))}
+                              </div>
+                            )}
+                          </div>
                         ))}
                       </div>
+
                     )}
                   </div>
                 ))}
@@ -177,11 +232,11 @@ function generateRandomNumber() {
 
             {/* Main Content */}
             <div className="flex-1 bg-[#fafffa] p-6">
-                        <HomeNav />
+              <HomeNav />
 
               {selectedCategory && (
-                <div className="bg-white rounded-lg shadow-sm p-6">
-                  <h2 className="text-xl font-semibold mb-4">
+                <div className=" rounded-lg shadow-sm p-6">
+                  <h2 className="bg-[#eef6eb] text-xl font-semibold mb-4 p-4">
                     Section: {selectedCategory.cat_name_en}
                   </h2>
 
@@ -192,6 +247,7 @@ function generateRandomNumber() {
                           key={generateRandomNumber()}
                           className={`border rounded-lg p-6 ${selectedDua === dua.dua_id ? 'border-[#417360]' : 'border-gray-200'
                             }`}
+                          id={`dua-${dua.dua_id}`}
                           onClick={() => handleDuaSelect(dua.dua_id)}
                         >
                           <div className="flex gap-3 items-center mb-4">
@@ -228,7 +284,7 @@ function generateRandomNumber() {
                           </div>
 
                           <div className="flex justify-end mt-4 space-x-2">
-                            <Image src={duaFrame} alt="duaFrame"/>
+                            <Image src={duaFrame} alt="duaFrame" />
                           </div>
                         </div>
                       ))}
