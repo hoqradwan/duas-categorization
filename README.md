@@ -34,8 +34,8 @@ npm run dev
 ```
 
 ### API Endpoints
- - GET All categories - `http://localhost:2000/api/categories`
- - GET All subcategories - `http://localhost:2000/api/sub-categories`
- - GET All subcategories under a category - `http://localhost:2000/api/sub-categories/${cat_id}`
- - GET All duas - `http://localhost:2000/api/duas`
- - GET duas by subcategory - `http://localhost:2000/api/duas/${subcat_id}`
+ - GET All categories - `/api/categories`
+ - GET All subcategories - `/api/sub-categories`
+ - GET All subcategories under a category - `/api/sub-categories/${cat_id}`
+ - GET All duas - `/api/duas`
+ - GET duas by subcategory - `/api/duas/${subcat_id}`
