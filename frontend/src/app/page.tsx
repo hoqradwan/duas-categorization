@@ -1,10 +1,10 @@
 
-import DuaApp from "@/components/DuaMain";
+import DuaMain from "@/components/DuaMain";
 
 export default function Home() {
   return (
-    <main>
-      <DuaApp />
+    <main className="bg-[#fbfffb]">
+      <DuaMain />
     </main>
   );
 }

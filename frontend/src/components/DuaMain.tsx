@@ -8,6 +8,7 @@ import HomeNav from './HomeNav';
 import Image from 'next/image';
 import duastar from '../../public/assets/dua/duastar.png';
 import duaFrame from '../../public/assets/dua/duaFrame.png';
+import duaArrow from '../../public/assets/dua/Vector_two.png';
 
 interface Category {
   cat_id: number;
@@ -44,7 +45,7 @@ const DuaMain = () => {
   const [duas, setDuas] = useState<Dua[]>([]);
   const [selectedDua, setSelectedDua] = useState<number | null>(null);
 
-  
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -109,7 +110,7 @@ const DuaMain = () => {
       const duasData = await res.json();
       setDuas(duasData);
       setSelectedDua(null);
-      setSelectedSubcategory(subcat_id);  
+      setSelectedSubcategory(subcat_id);
     } catch (error) {
       console.error("Failed to fetch duas:", error);
     }
@@ -136,7 +137,7 @@ const DuaMain = () => {
       );
       setFilteredCategories(filtered);
     } else {
-      setFilteredCategories(categories); 
+      setFilteredCategories(categories);
     }
   };
 
@@ -154,12 +155,12 @@ const DuaMain = () => {
 
           <div className="flex flex-1">
             {/* Left Navigation (Categories) */}
-            <div className="w-64 bg-white border-r border-gray-200 p-4 h-screen">
+            <div className="w-80 p-4 max-h-[calc(100vh-64px)] overflow-y-auto">
               <div className="relative mb-4">
                 <input
                   type="text"
                   placeholder="Search By Category"
-                  className="w-full p-2 pl-8 border border-gray-300 rounded-lg bg-gray-50"
+                  className="w-full p-2 pl-8 border-0 rounded-lg bg-[#f1f7f1] focus:outline-none focus:ring-0"
                   value={searchQuery}
                   onChange={handleSearchChange}
                 />
@@ -173,9 +174,9 @@ const DuaMain = () => {
                 {filteredCategories.map((category) => (
                   <div key={generateRandomNumber()} className="mb-2">
                     <button
-                      className={`flex items-center w-full p-3 text-left rounded-lg transition-colors ${selectedCategory?.cat_id === category.cat_id
-                        ? 'bg-[#e8f0f8] text-[#417360]'
-                        : 'hover:bg-gray-100'
+                      className={`flex items-center w-full p-3 text-left rounded-lg transition-colors cursor-pointer ${selectedCategory?.cat_id === category.cat_id
+                        ? 'bg-[#f1f7f1] text-[#417360]'
+                        : 'hover:bg-[#f1f7f1]'
                         }`}
                       onClick={() => handleCategorySelect(category.cat_id)}
                     >
@@ -192,12 +193,12 @@ const DuaMain = () => {
                     </button>
 
                     {selectedCategory?.cat_id === category.cat_id && (
-              
+
                       <div className="ml-8 mt-2 space-y-1">
                         {subcategories.map((subcategory) => (
                           <div key={generateRandomNumber()}>
                             <button
-                              className="w-full text-left p-2 text-sm hover:bg-gray-100 rounded"
+                              className="w-full text-left p-2 text-sm cursor-pointer rounded"
                               onClick={() => handleSubcategorySelect(subcategory.subcat_id)}
                             >
                               {subcategory.subcat_name_en}
@@ -207,16 +208,22 @@ const DuaMain = () => {
                             {/* Show duas under selected subcategory */}
                             {selectedSubcategory === subcategory.subcat_id && duas.length > 0 && (
                               <div className="ml-6 mt-1 space-y-1 max-h-40 overflow-y-auto">
-                                {duas.map((dua) => (
-                    
-                                  <p
-                                    key={generateRandomNumber()}
-                                    className="text-xs cursor-pointer px-2 py-1 rounded "
+                                {duas.map((dua) => (<>
+                                  <div className='flex gap-2'>
+                                    <span><Image src={duaArrow} alt='duaArrow' width={20} height={20} /></span>  
 
-                                    onClick={() => handleDuaSelect(dua.dua_id)}
-                                  >
-                                    {dua.dua_name_en}
-                                  </p>
+                                    < p
+                                      key={generateRandomNumber()}
+                                      className="text-xs cursor-pointer px-2 py-1 rounded "
+
+                                      onClick={() => handleDuaSelect(dua.dua_id)}
+                                    >
+                                      {dua.dua_name_en}
+                                    </p>
+                                  </div>
+
+                                </>
+
                                 ))}
                               </div>
                             )}
@@ -231,11 +238,11 @@ const DuaMain = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 bg-[#fafffa] p-6">
+            <div className="flex-1 bg-[#fafffa] max-h-[calc(100vh-64px)] overflow-y-auto">
               <HomeNav />
 
               {selectedCategory && (
-                <div className=" rounded-lg shadow-sm p-6">
+                <div className=" rounded-lg shadow-sm ">
                   <h2 className="bg-[#eef6eb] text-xl font-semibold mb-4 p-4">
                     Section: {selectedCategory.cat_name_en}
                   </h2>
@@ -258,7 +265,7 @@ const DuaMain = () => {
 
                               <span className="text-[#417360] ">{index + 1}</span>
                             </div>
-                            <h3 className="font-medium text-gray-700">
+                            <h3 className="font-bold text-[#417360]">
                               {dua.dua_name_en}
                             </h3>
                           </div>
@@ -303,7 +310,7 @@ const DuaMain = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

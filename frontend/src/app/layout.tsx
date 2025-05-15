@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Dua Categoriztion",
   description: "Important duas for Muslims",
+  icons: {
+    icon: '/favicon.ico', 
+  },
 };
 
 export default function RootLayout({

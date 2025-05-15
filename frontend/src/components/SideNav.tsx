@@ -72,8 +72,8 @@ const SideNav = () => {
                     <Image
                         src={challenge}
                         alt="Challenge"
-                        width={35}
-                        height={35}
+                        width={30}
+                        height={30}
                     />
                 </button>
                 
@@ -81,8 +81,8 @@ const SideNav = () => {
                     <Image
                         src={menu}
                         alt="Menu"
-                        width={35}
-                        height={35}
+                        width={30}
+                        height={30}
                     />
                 </button>
             </div>

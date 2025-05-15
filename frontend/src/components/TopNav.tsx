@@ -7,7 +7,7 @@ import logo from "../../public/assets/sidenav/logo.png";
 
 const TopNav = () => {
     return (
-        <div className=" flex justify-between items-center bg-[#fafffa] py-3 px-4 border-b border-gray-200 w-full">
+        <div className=" flex justify-between items-center bg-[#fafffa] py-1 px-4 border-b border-gray-200 w-full">
 
             <div className="flex items-center gap-3">
                 <Image
