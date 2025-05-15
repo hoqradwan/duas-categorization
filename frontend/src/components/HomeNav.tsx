@@ -1,6 +1,6 @@
 import Image from "next/image";
-import home from "../../public/assets/homeNav/home.png";
-import arrowRight from "../../public/assets/homeNav/arrow-right.png";
+import home from "../../public/assets/homenav/home.png";
+import arrowRight from "../../public/assets/homenav/arrow-right.png";
 
 const HomeNav = () => {
     return (
