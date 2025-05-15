@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import TopNav from './TopNav';
 import SideNav from './SideNav';
 import RightNav from './RightNav';
@@ -123,7 +123,7 @@ const DuaMain = () => {
     }, 100);
   };
 
-  const handleSearchChange = (e: any) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     setSearchQuery(query);
 
