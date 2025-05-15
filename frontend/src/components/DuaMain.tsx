@@ -49,7 +49,7 @@ const DuaMain = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch('http://localhost:2000/api/categories');
+        const res = await fetch(`http://161.248.200.38:2000/api/categories`);
         const categoriesData = await res.json();
         setCategories(categoriesData);
         setFilteredCategories(categoriesData);
@@ -60,14 +60,14 @@ const DuaMain = () => {
           setSelectedCategory(firstCategory);
 
           // Fetch subcategories for first category
-          const subcatRes = await fetch(`http://localhost:2000/api/sub-categories/${firstCategory.cat_id}`);
+          const subcatRes = await fetch(`http://161.248.200.38:2000/api/sub-categories/${firstCategory.cat_id}`);
           const subcategoriesData = await subcatRes.json();
           setSubcategories(subcategoriesData);
 
           if (subcategoriesData.length > 0) {
             const firstSubcategory = subcategoriesData[0];
 
-            const duasRes = await fetch(`http://localhost:2000/api/duas/${firstSubcategory.subcat_id}`);
+            const duasRes = await fetch(`http://161.248.200.38:2000/api/duas/${firstSubcategory.subcat_id}`);
             const duasData = await duasRes.json();
             setDuas(duasData);
 
@@ -89,7 +89,7 @@ const DuaMain = () => {
 
     // Fetch subcategories for the selected category
     try {
-      const res = await fetch(`http://localhost:2000/api/sub-categories/${cat_id}`);
+      const res = await fetch(`http://161.248.200.38:2000/api/sub-categories/${cat_id}`);
       const subcategoriesData = await res.json();
       setSubcategories(subcategoriesData);
       setDuas([]);
@@ -102,7 +102,7 @@ const DuaMain = () => {
 
   const handleSubcategorySelect = async (subcat_id: number) => {
     try {
-      const res = await fetch(`http://localhost:2000/api/duas/${subcat_id}`);
+      const res = await fetch(`http://161.248.200.38:2000/api/duas/${subcat_id}`);
       const duasData = await res.json();
       setDuas(duasData);
       setSelectedDua(null);
