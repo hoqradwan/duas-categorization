@@ -115,8 +115,7 @@ function generateRandomNumber() {
           <SideNav />
         </div>
 
-        <div className="flex-1">
-          <HomeNav />
+        <div className=" flex-1">
 
           <div className="flex flex-1">
             {/* Left Navigation (Categories) */}
@@ -178,6 +177,8 @@ function generateRandomNumber() {
 
             {/* Main Content */}
             <div className="flex-1 bg-[#fafffa] p-6">
+                        <HomeNav />
+
               {selectedCategory && (
                 <div className="bg-white rounded-lg shadow-sm p-6">
                   <h2 className="text-xl font-semibold mb-4">
