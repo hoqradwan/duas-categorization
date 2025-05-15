@@ -24,7 +24,7 @@ const HomeNav = () => {
                 />
             </div>
             
-            <span className="text-[#417360]">Dua's Importance</span>
+            <span className="text-[#417360]">Dua&apos;s Importance</span>
             
             <div className="flex items-center gap-1 mx-2">
                 <Image
