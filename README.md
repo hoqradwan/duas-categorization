@@ -2,6 +2,8 @@
 
 A full-stack web application for browsing and viewing Duas for different purposes.
 
+[Live Link](http://161.248.200.38:4000/)
+
 ---
 
 ## Tech Stack
