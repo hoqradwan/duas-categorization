@@ -146,7 +146,7 @@ const DuaMain = () => {
       <TopNav />
       <div className="flex flex-1">
         {/* Left Sidebar */}
-        <div className="w-16 bg-[#edf6ea] flex-shrink-0">
+        <div className="w-16 bg-[#edf6ea] sticky top-0 h-screen flex-shrink-0">
           <SideNav />
         </div>
 
@@ -154,7 +154,7 @@ const DuaMain = () => {
 
           <div className="flex flex-1">
             {/* Left Navigation (Categories) */}
-            <div className="w-64 bg-white border-r border-gray-200 p-4">
+            <div className="w-64 bg-white border-r border-gray-200 p-4 h-screen">
               <div className="relative mb-4">
                 <input
                   type="text"

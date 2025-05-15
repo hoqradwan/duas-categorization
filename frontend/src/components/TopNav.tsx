@@ -7,7 +7,7 @@ import logo from "../../public/assets/sidenav/logo.png";
 
 const TopNav = () => {
     return (
-        <div className="flex justify-between items-center bg-[#fafffa] py-3 px-4 border-b border-gray-200 w-full">
+        <div className=" flex justify-between items-center bg-[#fafffa] py-3 px-4 border-b border-gray-200 w-full">
 
             <div className="flex items-center gap-3">
                 <Image
@@ -17,7 +17,7 @@ const TopNav = () => {
                     height={40}
                     className="bg-[#cae7c3]"
                 />
-                <div>
+                <div className="ms-6">
                     <h1 className="font-semibold text-xl">Dua <span className="text-[#417360]">&</span> Ruqyah</h1>
                     <p className="text-sm text-gray-500">Hisnul Muslim</p>
                 </div>
