@@ -12,7 +12,7 @@ const HomeNav = () => {
                     width={16}
                     height={16}
                 />
-                <span className="text-[#1fa47b]">Home</span>
+                <span className="text-[#417360]">Home</span>
             </div>
             
             <div className="flex items-center gap-1 mx-2">
@@ -24,7 +24,7 @@ const HomeNav = () => {
                 />
             </div>
             
-            <span className="text-[#1fa47b]">Dua's Importance</span>
+            <span className="text-[#417360]">Dua's Importance</span>
             
             <div className="flex items-center gap-1 mx-2">
                 <Image

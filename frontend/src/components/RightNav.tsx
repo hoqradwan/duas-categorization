@@ -36,8 +36,8 @@ const RightNav = () => {
                             <p className="text-xs">28</p>
                         </div>
                         <div className="relative w-full h-1.5 bg-gray-200 rounded-full">
-                            <div className="absolute h-1.5 bg-[#1fa47b] rounded-full" style={{ width: "28%" }}></div>
-                            <div className="absolute h-3 w-3 bg-white border-2 border-[#1fa47b] rounded-full top-1/2 transform -translate-y-1/2" style={{ left: "28%" }}></div>
+                            <div className="absolute h-1.5 bg-[#417360] rounded-full" style={{ width: "28%" }}></div>
+                            <div className="absolute h-3 w-3 bg-white border-2 border-[#417360] rounded-full top-1/2 transform -translate-y-1/2" style={{ left: "28%" }}></div>
                         </div>
                     </div>
                     
@@ -47,8 +47,8 @@ const RightNav = () => {
                             <p className="text-xs">25</p>
                         </div>
                         <div className="relative w-full h-1.5 bg-gray-200 rounded-full">
-                            <div className="absolute h-1.5 bg-[#1fa47b] rounded-full" style={{ width: "25%" }}></div>
-                            <div className="absolute h-3 w-3 bg-white border-2 border-[#1fa47b] rounded-full top-1/2 transform -translate-y-1/2" style={{ left: "25%" }}></div>
+                            <div className="absolute h-1.5 bg-[#417360] rounded-full" style={{ width: "25%" }}></div>
+                            <div className="absolute h-3 w-3 bg-white border-2 border-[#417360] rounded-full top-1/2 transform -translate-y-1/2" style={{ left: "25%" }}></div>
                         </div>
                     </div>
                     

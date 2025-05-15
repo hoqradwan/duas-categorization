@@ -12,15 +12,8 @@ import menu from "../../public/assets/sidenav/menu.png";
 const SideNav = () => {
     return (
         <div className="h-full flex flex-col justify-between py-4">
-            <div className="flex flex-col items-center gap-6">
-                <div className="mb-4">
-                    <Image
-                        src={logo}
-                        alt="Logo"
-                        width={30}
-                        height={30}
-                    />
-                </div>
+            <div className="flex flex-col items-center gap-4">
+             
                 
                 <button className="p-2 rounded-full bg-[#cae7c3] flex items-center justify-center">
                     <Image
@@ -77,13 +70,13 @@ const SideNav = () => {
                 </button>
             </div>
             
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-2">
                 <button className="p-2 rounded-full hover:bg-[#e8f0e8] flex items-center justify-center">
                     <Image
                         src={challenge}
                         alt="Challenge"
-                        width={22}
-                        height={22}
+                        width={35}
+                        height={35}
                     />
                 </button>
                 
@@ -91,8 +84,8 @@ const SideNav = () => {
                     <Image
                         src={menu}
                         alt="Menu"
-                        width={22}
-                        height={22}
+                        width={35}
+                        height={35}
                     />
                 </button>
             </div>
