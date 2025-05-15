@@ -82,10 +82,6 @@ const DuaMain = () => {
     fetchCategories();
   }, []);
 
-  function generateRandomNumber() {
-    return Math.floor(100000 + Math.random() * 900000);
-  }
-
 
   const handleCategorySelect = async (cat_id: number) => {
     const category = categories.find((cat) => cat.cat_id === cat_id);
@@ -172,7 +168,7 @@ const DuaMain = () => {
 
               <div className="overflow-y-auto max-h-[calc(100vh-200px)]">
                 {filteredCategories.map((category) => (
-                  <div key={generateRandomNumber()} className="mb-2">
+                  <div key={category.cat_id} className="mb-2">
                     <button
                       className={`flex items-center w-full p-3 text-left rounded-lg transition-colors cursor-pointer ${selectedCategory?.cat_id === category.cat_id
                         ? 'bg-[#f1f7f1] text-[#417360]'
@@ -196,7 +192,7 @@ const DuaMain = () => {
 
                       <div className="ml-8 mt-2 space-y-1">
                         {subcategories.map((subcategory) => (
-                          <div key={generateRandomNumber()}>
+                          <div key={subcategory.subcat_id}>
                             <button
                               className="w-full text-left p-2 text-sm cursor-pointer rounded"
                               onClick={() => handleSubcategorySelect(subcategory.subcat_id)}
@@ -213,7 +209,7 @@ const DuaMain = () => {
                                     <span><Image src={duaArrow} alt='duaArrow' width={20} height={20} /></span>  
 
                                     < p
-                                      key={generateRandomNumber()}
+                                      key={dua.dua_id}
                                       className="text-xs cursor-pointer px-2 py-1 rounded "
 
                                       onClick={() => handleDuaSelect(dua.dua_id)}
@@ -251,7 +247,7 @@ const DuaMain = () => {
                     <div className="space-y-6">
                       {duas.map((dua, index) => (
                         <div
-                          key={generateRandomNumber()}
+                          key={dua.dua_id}
                           className={`border rounded-lg p-6 ${selectedDua === dua.dua_id ? 'border-[#417360]' : 'border-gray-200'
                             }`}
                           id={`dua-${dua.dua_id}`}
