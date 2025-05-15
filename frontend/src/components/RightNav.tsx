@@ -55,7 +55,7 @@ const RightNav = () => {
                     <div>
                         <p className="text-xs font-medium mb-1">Arabic Script & Font Face</p>
                         <div className="flex justify-between items-center bg-[#eef6eb] rounded p-2">
-                            <span className="text-xs">Uthmani</span>
+                            <span className="text-xs">Uthma</span>
                             <Image 
                                 src={arrowDropdown} 
                                 alt="Dropdown" 
