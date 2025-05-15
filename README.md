@@ -20,7 +20,7 @@ A full-stack web application for browsing and viewing Duas for different purpose
 
 1. **Requirements:**
    - Node.js v14+
-   - SQLite3 database file
+   - SQLite database file
     
 2. **Installation:**
 
